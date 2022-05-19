@@ -4,6 +4,10 @@ module.exports = {
     extend: {
 
     },
+    fontFamily: { EL : ['El Messiri'],
+    Ham: ['Hammersmith One']
+
+    }
   },
   plugins: [],
 }
