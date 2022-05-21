@@ -60,10 +60,10 @@ rawcoindata.map(item => {
                     </div>
                 </div>
 
-                <div className="flex flex-col bg-blue-1 ml-3 text-blue-400">
-                    <div>Market price: <span>{item.market_data.current_price.usd}</span> </div>
-                    <div>Other price: <span>{item.market_data.high_24h.usd}</span> </div>
-                    <div>Other Info:  <span>{item.market_data.low_24h.usd}</span> </div>
+                <div className="flex flex-col  ml-3 text-blue-400">
+                    <div className="flex" >Market price: <span>{item.market_data.current_price.usd}</span> </div>
+                    <div className="flex  justify-between">price: <span>{item.market_data.high_24h.usd}</span> </div>
+                    <div className="flex justify-between">Other Info:  <span>{item.market_data.low_24h.usd}</span> </div>
                 </div>  
              
         </div>

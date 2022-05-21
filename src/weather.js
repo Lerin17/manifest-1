@@ -1,7 +1,6 @@
-// http://api.weatherapi.com/v1
-// API Key: 279708ec7d56411eaf5221141221405
 
-{/* <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet"></link> */}
+
+import React from 'react'
 
 export default function Weather(props) {
     const [weatherData, setweatherData] = React.useState();

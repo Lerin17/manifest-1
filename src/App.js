@@ -4,6 +4,7 @@ import React from 'react';
 import Background from './background';
 import Time from './time';
 import Coin from './coins';
+import Weather from './weather';
 import Dropdown from './dropdown';
 import Drop from './drop';
 
@@ -122,6 +123,7 @@ function replacecoin(event) {
        coinsvg ={coinsvg}
        replacecoin = {replacecoin}
        currentcoin = {currentcoin}/>
+       <Weather/>
     </div>
 
   );
