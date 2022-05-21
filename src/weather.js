@@ -6,6 +6,7 @@ export default function Weather(props) {
     const [weatherData, setweatherData] = React.useState();
     let weatherdisplay
     let current_display
+    let forecast_display
 
 
     React.useEffect(() => {
@@ -37,21 +38,44 @@ export default function Weather(props) {
           
         </div>
 
+    const forecastData = weatherData.forecast.forecastday
+
+    forecast_display = forecastData.map(item => {
+        return <div>
+            <div>
+            <p>min-{item.day.maxtemp_c}</p>
+            <p>max-{item.day.mintemp_c}</p>
+            </div>
+
+            <p>{item.day.condition.text}</p>
+            <div>
+                <img src= {item.day.condition.icon} alt="" />
+            </div>
+           
+        </div>
+    })
+
 
 
     // console.log('forecast',weatherData.forecast.forecastday)
-    const forecastData = weatherData.forecast.forecastday
+    
 
-    console.log(forecastData[0].day.maxtemp_c)
-    console.log(forecastData[0].day.mintemp_c)
-    console.log(forecastData[0].day.condition.text)
-    console.log(forecastData[0].day.condition.icon)
+    // console.log(forecastData[0].day.maxtemp_c)
+    // console.log(forecastData[0].day.mintemp_c)
+    // console.log(forecastData[0].day.condition.text)
+    // console.log(forecastData[0].day.condition.icon)
 
     }
 
     
     return(
-        <div className="absolute right-3 text-red-500 top-5" > {weatherData?current_display: '...loading'} </div>
+        <div className="absolute right-3 text-red-500 top-5" > {weatherData?current_display: '...loading'}
+        
+        <div>
+        {weatherData?forecast_display:'...loading'}
+        </div>
+    
+        </div>
     )
 
 }
