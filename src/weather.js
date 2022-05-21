@@ -42,16 +42,21 @@ export default function Weather(props) {
 
     forecast_display = forecastData.map(item => {
         return <div>
-            <div>
-            <p>min-{item.day.maxtemp_c}</p>
-            <p>max-{item.day.mintemp_c}</p>
-            </div>
+            <div className='text-center bg-black'>mon</div>
 
-            <p>{item.day.condition.text}</p>
+            <div className='flex'>
             <div>
                 <img src= {item.day.condition.icon} alt="" />
             </div>
-           
+
+            <div>
+            <p>min-{item.day.maxtemp_c}°C</p>
+            <p>max-{item.day.mintemp_c}°C</p>
+            <p>{item.day.condition.text}</p>
+            </div>      
+            </div>
+
+       
         </div>
     })
 
@@ -70,8 +75,8 @@ export default function Weather(props) {
     
     return(
         <div className="absolute right-3 text-red-500 top-5" > {weatherData?current_display: '...loading'}
-        
-        <div>
+
+        <div className='bg-yellow-400'>
         {weatherData?forecast_display:'...loading'}
         </div>
     
