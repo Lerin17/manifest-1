@@ -12,14 +12,39 @@ import Drop from './drop';
 function App() {
 
 const timestyle = {
-style1: 'absolute top-1/2 left-1/2  font-EL text-6xl text-green-400 -translate-y-1/2 -translate-x-1/2',
-style2: 'absolute top-4 bg-green-400'
+style1: 'absolute top-1/2 left-1/2 flex flex-col  -translate-y-1/2 -translate-x-1/2  cursor-pointer ' ,
+style2: 'absolute top-1/2 left-1/2  font-EL text-8xl text-green-400 -translate-y-1/2 -translate-x-1/2 hover:text-green-600 cursor-pointer',
+style3: 'absolute top-1/2 left-1/2  font-mono text-8xl text-green-400 -translate-y-1/2 -translate-x-1/2 hover:text-green-600 cursor-pointer'
+
+}
+
+const currentsty = []
+
+const [weatherstyle, setweatherstyle] = React.useState({
+  style1: 'backdrop-filter backdrop-blur-xl bg-white bg-opacity-30 rounded hidden'
+});
+
+
+
+
+
+function openforecast(params) {
+  setweatherstyle(prev => {return {
+    ...prev, style1: 'backdrop-filter backdrop-blur-xl bg-white bg-opacity-30 rounded absolute right-3 text-red-500 top-24'
+  }})
+  
+}
+
+function closeforecast(){
+  setweatherstyle(prev => {return {
+    ...prev, style1: 'backdrop-filter backdrop-blur-xl bg-white bg-opacity-30 rounded hidden'
+  }})
 }
 
 const [currentcoin, setcurrentcoin] = React.useState('bitcoin');
 
 const [coinsvg, setcoinsvg] = React.useState( <svg
-  className="fill-current bg-red-300 transform group-hover:-rotate-180
+  className="fill-current  transform group-hover:-rotate-180
   transition duration-150 ease-in-out"
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 20 20">
@@ -32,8 +57,8 @@ const [coinstyle, setcoinstyle] = React.useState({
   style1: 'absolute top-4 text-blue-400 border rounded mx-3 p-2 flex hover:bg-black hover:text-white hover:border-black', 
   style2: 'absolute top-4 border-4 rounded mx-3',
   svgstyle: 'self-center h-4 w-4',
-  menustyle: ' bg-gray-300 absolute top-28 left-4 -mt-4 hidden flex justify-between',
-  changemenu: 'border w-16  flex items-center justify-center px-1',
+  menustyle: ' bg-gray-300 absolute top-28 left-4 -mt-4 hidden flex justify-between ',
+  changemenu: 'border rounded w-16  flex items-center justify-center px-1 bg-black text-white',
   altcoinstyle: 'absolute flex top-16 bg-red hidden'
  
 
@@ -50,7 +75,7 @@ const [coinstyle, setcoinstyle] = React.useState({
 
 function openchangemenu(params) {
   setcoinstyle(prev => {
-    return {...prev, changemenu: 'border w-16  flex items-center justify-center px-1', menustyle: 'absolute top-28 left-4  pt-4 flex text-sm',
+    return {...prev,  style1: 'absolute top-4  border rounded mx-3 p-2 flex bg-black text-white border-black', changemenu: 'border w-16  flex items-center justify-center px-1 bg-black text-white', menustyle: 'absolute top-28 left-4  pt-4 flex text-sm',
   altcoinstyle: 'absolute flex top-8 bg-red  pt-4'}
   })
 
@@ -60,8 +85,8 @@ function openchangemenu(params) {
 function closechangemenu(params) {
 setcoinstyle(prev => {
   return {
-    ...prev,   menustyle: ' bg-gray-300 absolute top-28 left-4 -mt-4 hidden flex justify-between',
-    changemenu: 'border w-16  flex items-center justify-center px-1',
+    ...prev,   style1: 'absolute top-4 text-blue-400 border rounded mx-3 p-2 flex hover:bg-black hover:text-white hover:border-black',  menustyle: ' bg-gray-300 absolute top-28 left-4 -mt-4 hidden flex justify-between',
+    changemenu: 'border w-16  flex items-center justify-center px-1  bg-black text-white',
     altcoinstyle: 'absolute flex top-16 bg-red hidden'
   }
 })  
@@ -75,7 +100,7 @@ function changestyle() {
 
 setcoinstyle(prev => {
   return {...prev, menustyle: ' absolute top-28 left-4 -mt-4  pt-8 flex',
-  changemenu: 'border w-16  flex items-center justify-center px-1'
+  changemenu: 'border w-16  flex items-center justify-center px-1 bg-black text-white'
 }
 })
 
@@ -95,7 +120,7 @@ function changeback(){
     </svg>
   )
   setcoinstyle(prev => {
-    return {...prev, menustyle: 'border bg-gray-300 absolute top-28 left-4 -mt-1 hidden' }
+    return {...prev, menustyle: 'border bg-gray-300 absolute top-28 left-4 -mt-1 hidden', changemenu: 'border rounded w-16  flex items-center justify-center px-1 bg-black text-white' }
   })
 }
 
@@ -123,7 +148,11 @@ function replacecoin(event) {
        coinsvg ={coinsvg}
        replacecoin = {replacecoin}
        currentcoin = {currentcoin}/>
-       <Weather/>
+       <Weather
+       style = {weatherstyle}
+       openforecast = {openforecast}
+       closeforecast = {closeforecast}
+       />
     </div>
 
   );
