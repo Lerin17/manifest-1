@@ -17,6 +17,12 @@ export default function Coin(props) {
     const currentcoindata = []
     const altcoindata = []
     const currentcoinx = []
+
+    let iscoininput = true
+
+    function opencoininput(){
+        iscoininput = true
+    }
     
 
     console.log('ddd')
@@ -89,7 +95,7 @@ rawcoindata.map(item => {
  const  datamenu = <div> 
      <div onMouseEnter={props.changestyle} onMouseLeave = {props.changeback} className= {props.style.menustyle}>
     <div className= {props.style.changemenu}>
-        <h1 className="text-align">menu</h1>
+        <h1  className="text-align ">menu</h1>
         <div>
         <svg onMouseEnter={props.openchangemenu} onMouseLeave = {props.closechangemenu}
         className="fill-current w-4  transform group-hover:-rotate-180
@@ -106,8 +112,8 @@ rawcoindata.map(item => {
     </div>
 
     <div>
-     <div className="border ml-5 px-1 ">
-         <h1>enter new coin</h1>
+     <div className="border ml-5 px-1 bg-black text-white border ">
+        {iscoininput? <button onClick={opencoininput}>enter new coin</button>: <input type="text" name="" id="" /> }
      </div>
     </div>
 
